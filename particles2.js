@@ -3,11 +3,10 @@ var particles = [];
 var s = 1;
 var width = canvas.width = window.innerWidth/s;
 var height = canvas.height = window.innerHeight/s;
-var colors = ['#029DAF', '#E5D599', '#FFC219', '#F07C19', '#E32551'];
 var gravity = 0.004;
 
 function initParticles(a, x) {
-  for (var i = 0; i < a/5; i++) {
+  for (var i = 0; i < a/10; i++) {
     setTimeout(createParticle, 20, i, x);
   }
 }
@@ -18,7 +17,7 @@ function createParticle(i, x) {
 	var vx = -2+Math.random()*4;
 	var vy = Math.random()*-3;
 	var size = 5+Math.random()*5;
-	var color = colors[i%colors.length];
+	var color = "#fff";
 	var opacity =  0.5 + Math.random()*0.5;
 	var p = new Particle(x, y, vx, vy, size, color, opacity);
 	particles.push(p);
