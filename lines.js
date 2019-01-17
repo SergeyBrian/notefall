@@ -3,52 +3,41 @@ var particles = [];
 var s = 1;
 var width = canvas.width = window.innerWidth/s;
 var height = canvas.height = window.innerHeight/s;
-var gravity = 0.004;
 
-function initParticles(a, x) {
-  for (var i = 0; i < a/10; i++) {
-    setTimeout(createParticle, 20, i, x);
-  }
-}
+var color = "#fff";
+var alpha = "rgba(0, 0, 0, 0.1)";
 
-function createParticle(i, x) {
-	x = x * 10;
+function createParticle(x){
+	ctx.fillStyle = color;
+	x = x*10;
 	var y = height*0.5;
-	var vx = -2+Math.random()*4;
-	var vy = Math.random()*-3;
-	var size = 5+Math.random()*5;
-	var color = "#fff";
-	var opacity =  0.5 + Math.random()*0.5;
-	var p = new Particle(x, y, vx, vy, size, color, opacity);
+	var size = 10;
+	var v = -1.5;
+	ctx.fillRect(x, y, size, size);
+	var p = new Particle(x, y, size, v)
 	particles.push(p);
 }
 
-function Particle(x, y, vx, vy, size, color, opacity) {  
-  this.update = function() {
-    if (opacity - 0.004 > 0) opacity -= 0.004 ;
-    
-    vy += gravity;
-    x += vx/2;
-    y += vy/2;
-  }
-  
-  this.draw = function() {
-    ctx.globalAlpha = opacity;
-    ctx.fillStyle = color;
-    ctx.fillRect(x, y, size, size);
-  } 
+function Particle(x, y, size, v){
+	this.update = function(){
+		y += v;
+	}
+
+	this.draw = function(){
+		ctx.fillStyle = color;
+		ctx.fillRect(x, y, size, size);
+	}
 }
 
 function render() {
-  ctx.clearRect(0, 0, width, height);
-  for (var i = 0; i < particles.length; i++) {
-    particles[i].update();
-    particles[i].draw();
-  }
-  requestAnimationFrame(render);
+	ctx.fillStyle = alpha;
+	ctx.fillRect(0, 0, width, height);
+	for (var i = 0; i < particles.length; i++){
+		particles[i].update();
+		particles[i].draw();
+	}
+	requestAnimationFrame(render);
 }
-
-//MIDI
 
 window.addEventListener('resize', resize);
 function resize() {
@@ -59,10 +48,10 @@ function resize() {
 function process(action, note, status){
 	if (action == 144 && status != 0) {
 		console.log("Pressed " + note);
-		initParticles(status, note);
+		createParticle(note);
+		// render();
 	}
 }
-render();
 
 function success(midi){
 	console.log("Midi device connected! ", midi);

@@ -1,6 +1,6 @@
 body{
-	background-color: #fff;
-	color: #819AC2;
+	background-color: #222;
+	color: #fff;
 	font-family: 'Ubuntu Condensed', sans-serif;
 }
 #logo{
@@ -10,4 +10,12 @@ body{
 }
 h1{
 	text-shadow: 3px 0 10px rgba(0, 0, 0.5);
+}
+
+a{
+	color: #fff;
+	text-shadow: 3px 0 10px rgba(0, 0, 0.5);
+	text-decoration: none;
+	font-size: 150%;
+	margin-right: 10px;
 }
