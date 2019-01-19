@@ -4,21 +4,22 @@ var s = 1;
 var width = canvas.width = window.innerWidth/s;
 var height = canvas.height = window.innerHeight/s;
 
-var color = "#000";
-var alhpa = "rgba(255, 255, 255, 0.1)";
+var color = "#fff";
+var alpha = "rgba(0, 0, 0, 0.1)";
 
 document.getElementById('color').oninput = function() {
 	color = document.getElementById('color').value;
 	console.log(color);
 }
 document.getElementById('alpha').oninput = function() {
-	alpha = "rgba(0, 0, 0," + document.getElementById('alpha').value + ")";
+	alpha = "rgba(0, 0, 0, " + document.getElementById('alpha').value + ")";
 	console.log(alpha);
 }
 
 function createParticle(x){
 	ctx.fillStyle = color;
 	console.log(color);
+	console.log(alpha)
 	x = x*10;
 	var y = height*0.5;
 	var size = 10;
