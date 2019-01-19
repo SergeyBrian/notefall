@@ -25,3 +25,7 @@ a{
 	font-size: 150%;
 	margin-right: 10px;
 }
+
+canvas{
+	background-color: #000;
+}
