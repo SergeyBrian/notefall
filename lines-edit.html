@@ -9,10 +9,15 @@
 <body>
 	<h1 id="connected" align="center"></h1>
 	<canvas id="canvas">Unable to draw canvas</canvas>
+	<label>
+		<span style="color: #aaa;">Tempo</span>
+		<input type="number" step="0.5" value="1.5" id="tempo" title="Lines speed in px">
+	</label>
 	<input type="text" id="color" placeholder="Color hash, starting with #" value="#fff">
 	<input type="text" id="alpha" placeholder="Alpha" title="How fast do lines disappear. Value from 0 to 1" value="0.1">
 	<div id="mode"></div>
 	<script src="./lines-edit.js"></script>
+	<script src="./tempo.js"></script>
 	<a href="./index.html">Home</a>
 </body>
 </html>

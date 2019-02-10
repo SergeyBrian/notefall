@@ -20,13 +20,13 @@ function createParticle(x){
 	grad.addColorStop(1, 'red');
 	
 	ctx.fillStyle = grad;
-	ctx.fillRect(x*10, height*0.5, 10, 1);
+	ctx.fillRect(x*10, height*0.5, 10, 10);
 	p = new Particle(x*10, height*0.5, grad);
 	particles.push(p);
 }
 function endParticle(x){
 	ctx.fillStyle = "#fff";
-	ctx.fillRect(x*10, height*0.5, 10, 1);
+	ctx.fillRect(x*10, height*0.5, 10, 10);
 	p = new Particle(x*10, height*0.5, "#fff");
 	particles.push(p);
 }
@@ -34,12 +34,12 @@ function endParticle(x){
 function Particle(x, y, color){
 	this.update = function(){
 		y += vy;
-	}
+	};
 
 	this.draw = function(){
 		ctx.fillStyle = color;
-		ctx.fillRect(x, y, 10, 2);
-	}
+		ctx.fillRect(x, y, 10, 10);
+	};
 }
 
 function render(){

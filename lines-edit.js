@@ -4,6 +4,8 @@ var s = 1;
 var width = canvas.width = window.innerWidth/s;
 var height = canvas.height = window.innerHeight/s;
 
+var vy = -1.5;
+
 var color = "#fff";
 var alpha = "rgba(0, 0, 0, 0.1)";
 
@@ -23,9 +25,8 @@ function createParticle(x){
 	x = x*10;
 	var y = height*0.5;
 	var size = 10;
-	var v = -1.5;
 	ctx.fillRect(x, y, size, size);
-	var p = new Particle(x, y, size, v)
+	var p = new Particle(x, y, size, vy)
 	particles.push(p);
 }
 

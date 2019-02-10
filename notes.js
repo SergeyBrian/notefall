@@ -14,30 +14,30 @@ function resize() {
 
 function createParticle(x){
 	ctx.fillStyle = "#fff";
-	ctx.fillRect(x*10, height*0.5, 10, 1);
-	p = new Particle(x*10, height*0.5, "#fff");
+	ctx.fillRect(x*10, height*0.5, 10, 10);
+	let p = new Particle(x*10, height*0.5, "#fff");
 	particles.push(p);
 }
 function endParticle(x){
 	ctx.fillStyle = "#000";
-	ctx.fillRect(x*10, height*0.5, 10, 1);
-	p = new Particle(x*10, height*0.5, "#000");
+	ctx.fillRect(x*10, height*0.5, 10, 10);
+	let p = new Particle(x*10, height*0.5, "#000");
 	particles.push(p);
 }
 
 function Particle(x, y, color){
 	this.update = function(){
 		y += vy;
-	}
+	};
 
 	this.draw = function(){
 		ctx.fillStyle = color;
-		ctx.fillRect(x, y, 10, 2);
-	}
+		ctx.fillRect(x, y, 10, 10);
+	};
 }
 
 function render(){
-	for (var i = 0; i < particles.length; i++){
+	for (let i = 0; i < particles.length; i++){
 		particles[i].update();
 		particles[i].draw();
 	}
@@ -46,10 +46,10 @@ function render(){
 }
 
 function process(action, note, status){
-	if (action == 144 && status != 0) {
+	if (action === 144 && status !== 0) {
 		console.log("Pressed " + note);
 		createParticle(note);
-	} else if (action == 144 && status == 0) {
+	} else if (action === 144 && status === 0) {
 		console.log("Released " + note);
 		endParticle(note);
 	}
