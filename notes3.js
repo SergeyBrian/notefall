@@ -6,9 +6,9 @@ var height = canvas.height = window.innerHeight/s;
 
 var vy = -1.5;
 
-const scheme = [["white", "yellow", "red"], ["#65AFFC", "#418BFF", "#4701A6"], ["black", "grey", "white"], ["#4E5CEF", "#AB50A8", "#EA4878"], ["#4024D7", "#F32469", "#F6762B"]];
+const scheme = [["white", "yellow", "red"], ["#65AFFC", "#418BFF", "#4701A6"], ["black", "grey", "white"], ["#4E5CEF", "#AB50A8", "#EA4878"], ["#4024D7", "#F32469", "#F6762B"], ["#001E00", "#269926", "#39E639"]];
 var current_scheme = 0;
-const schemes = ["Red orange", "Blue night", "Fading white", "Pink cloud", "Blue peach"];
+const schemes = ["Red orange", "Blue night", "Fading white", "Pink cloud", "Blue peach", "Green fade"];
 
 
 window.addEventListener('resize', resize);
