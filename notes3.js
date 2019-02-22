@@ -9,24 +9,23 @@ const white = [21, 23, 23, 24, 26, 28, 29, 31, 33, 35, 36, 38, 40, 41, 43, 45, 4
 var vy = -1.5;
 
 const scheme = [["white", "yellow", "red"], ["#65AFFC", "#418BFF", "#4701A6"], ["black", "grey", "white"], ["#4E5CEF", "#AB50A8", "#EA4878"], ["#4024D7", "#F32469", "#F6762B"], ["#001E00", "#269926", "#39E639"]];
-var current_scheme = 0;
+let current_scheme = 0;
 const schemes = ["Red orange", "Blue night", "Fading white", "Pink cloud", "Blue peach", "Green fade"];
 
 function calc_x(x){
     //If it's a black key
     if (black.indexOf(x) !== -1){
         //Number of black keys before * width of each key
-        x += (black.indexOf(x) + 1) * 8;
-        x += (white.indexOf(x - 1) + 1) * 10;
+        x = ((black.indexOf(x) + 1) * 8) + ((white.indexOf(x - 1) + 1) * 10);
     } else {
         //If it's a white key
         //Number of white keys before * width of each key
         x += (white.indexOf(x) + 1) * 10;
-        for (let i = black.length; black[i] < x; i--){
-            x += (black.indexOf(i) + 1) * 8;
-        }
+        if (black.indexOf(x - 1) !== -1)
+            x += black.indexOf(x - 1) * 8;
+        else
+            x += black.indexOf(x - 2) * 8;
     }
-    console.log(x);
     return x;
 }
 
@@ -42,7 +41,7 @@ function createParticle(x){
         w = 7;
     else
         w = 10;
-    var grad = ctx.createLinearGradient(0, 0, 0, 500);
+    const grad = ctx.createLinearGradient(0, 0, 0, 500);
     grad.addColorStop(0, scheme[current_scheme][0]);
     grad.addColorStop(.50, scheme[current_scheme][1]);
     grad.addColorStop(1, scheme[current_scheme][2]);
@@ -76,7 +75,7 @@ function Particle(x, y, color, w){
 }
 
 function render(){
-    for (var i = 0; i < particles.length; i++){
+    for (let i = 0; i < particles.length; i++){
         particles[i].update();
         particles[i].draw();
     }
