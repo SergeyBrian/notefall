@@ -1,11 +1,10 @@
-var canvas = document.getElementById("canvas"), ctx = canvas.getContext("2d");
-var particles = [];
-var s = 1;
-var width = canvas.width = window.innerWidth/s;
-var height = canvas.height = window.innerHeight/s;
+const canvas = document.getElementById("canvas"), ctx = canvas.getContext("2d");
+const particles = [];
+let width = canvas.width = window.innerWidth;
+let height = canvas.height = window.innerHeight;
 const black = [22, 25, 27, 30, 32, 34, 37, 39, 42, 44, 46, 49, 51, 54, 56, 58, 61, 63, 66, 68, 70, 73, 75, 78, 80, 82, 85, 87, 90, 92, 94, 97, 99, 102, 104, 106];
 
-var vy = -1.5;
+const vy = -1.5;
 
 
 window.addEventListener('resize', resize);
@@ -20,14 +19,14 @@ function createParticle(x){
 		w = 7;
 	else
 		w = 10;
-	var grad = ctx.createLinearGradient(0, 0, 1000, 0);
+	const grad = ctx.createLinearGradient(0, 0, 1000, 0);
 	grad.addColorStop(0, 'magenta');
 	grad.addColorStop(.50, 'blue');
 	grad.addColorStop(1, 'red');
 	
 	ctx.fillStyle = grad;
-	ctx.fillRect(x*10, height*0.5, w, 10);
-	p = new Particle(x * 10, height * 0.5, grad, w);
+	ctx.fillRect(calc_x(x), height*0.5, w, 10);
+	p = new Particle(calc_x(x), height * 0.5, grad, w);
 	particles.push(p);
 }
 function endParticle(x){
@@ -54,7 +53,7 @@ function Particle(x, y, color, w){
 }
 
 function render(){
-	for (var i = 0; i < particles.length; i++){
+	for (let i = 0; i < particles.length; i++){
 		particles[i].update();
 		particles[i].draw();
 	}
@@ -74,8 +73,8 @@ function process(action, note, status){
 
 function success(midi){
 	console.log("Midi device connected! ", midi);
-	var inputs = midi.inputs.values();
-	for(var input = inputs.next();
+	const inputs = midi.inputs.values();
+	for(let input = inputs.next();
 		input && !input.done;
 		input = inputs.next()) {
 		input.value.onmidimessage = onMIDIMessage;

@@ -1,30 +1,29 @@
-var canvas = document.getElementById("canvas"), ctx = canvas.getContext("2d");
-var particles = [];
-var s = 1;
-var width = canvas.width = window.innerWidth/s;
-var height = canvas.height = window.innerHeight/s;
-var gravity = 0.004;
+const canvas = document.getElementById("canvas"), ctx = canvas.getContext("2d");
+const particles = [];
+let width = canvas.width = window.innerWidth;
+let height = canvas.height = window.innerHeight;
+const gravity = 0.004;
 
 function initParticles(a, x) {
-  for (var i = 0; i < a/10; i++) {
+  for (let i = 0; i < a/10; i++) {
     setTimeout(createParticle, 20, i, x);
   }
 }
 
 function createParticle(i, x) {
 	x = x * 10;
-	var y = height*0.5;
-	var vx = -2+Math.random()*4;
-	var vy = Math.random()*-3;
-	var size = 5+Math.random()*5;
-	var grad = ctx.createLinearGradient(0, 0, 1000, 0);
+	const y = height * 0.5;
+	const vx = -2 + Math.random() * 4;
+	const vy = Math.random() * -3;
+	const size = 5 + Math.random() * 5;
+	const grad = ctx.createLinearGradient(0, 0, 1000, 0);
 	grad.addColorStop(0, 'magenta');
 	grad.addColorStop(.50, 'blue');
 	grad.addColorStop(1, 'red');
 
-	var color = grad;
-	var opacity =  0.5 + Math.random()*0.5;
-	var p = new Particle(x, y, vx, vy, size, color, opacity);
+	const color = grad;
+	const opacity = 0.5 + Math.random() * 0.5;
+	const p = new Particle(x, y, vx, vy, size, color, opacity);
 	particles.push(p);
 }
 
@@ -46,7 +45,7 @@ function Particle(x, y, vx, vy, size, color, opacity) {
 
 function render() {
   ctx.clearRect(0, 0, width, height);
-  for (var i = 0; i < particles.length; i++) {
+  for (let i = 0; i < particles.length; i++) {
     particles[i].update();
     particles[i].draw();
   }
@@ -62,7 +61,7 @@ function resize() {
 }
 
 function process(action, note, status){
-	if (action == 144 && status != 0) {
+	if (action === 144 && status !== 0) {
 		console.log("Pressed " + note);
 		initParticles(status, note);
 	}
@@ -71,8 +70,8 @@ render();
 
 function success(midi){
 	console.log("Midi device connected! ", midi);
-	var inputs = midi.inputs.values();
-	for(var input = inputs.next();
+	const inputs = midi.inputs.values();
+	for(let input = inputs.next();
 		input && !input.done;
 		input = inputs.next()) {
 		input.value.onmidimessage = onMIDIMessage;

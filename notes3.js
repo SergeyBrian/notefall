@@ -11,19 +11,6 @@ const scheme = [["white", "yellow", "red"], ["#65AFFC", "#418BFF", "#4701A6"], [
 let current_scheme = 0;
 const schemes = ["Red orange", "Blue night", "Fading white", "Pink cloud", "Blue peach", "Green fade"];
 
-function calc_x(x){
-    //If it's a black key
-    if (black.indexOf(x) !== -1){
-        //Number of black keys before * width of each key
-        x = ((black.indexOf(x) + 1) * 8) + ((white.indexOf(x - 1) + 1) * 10);
-    } else {
-        //If it's a white key
-        //Number of white keys before * width of each key
-        x = ((white.indexOf(x) + 1) * 10) + (Math.max(black.indexOf(x - 1), black.indexOf(x - 2)) * 8);
-    }
-    return x + 100;
-}
-
 window.addEventListener('resize', resize);
 function resize() {
     width = canvas.width = window.innerWidth;
