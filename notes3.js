@@ -1,15 +1,13 @@
 const canvas = document.getElementById("canvas"), ctx = canvas.getContext("2d");
 const particles = [];
-const s = 1;
-var width = canvas.width = window.innerWidth/s;
-var height = canvas.height = window.innerHeight/s;
+let width = canvas.width = window.innerWidth;
+let height = canvas.height = window.innerHeight;
 
-var vy = -1.5;
+let vy = -1.5;
 
 const scheme = [["white", "yellow", "red"], ["#65AFFC", "#418BFF", "#4701A6"], ["black", "grey", "white"], ["#4E5CEF", "#AB50A8", "#EA4878"], ["#4024D7", "#F32469", "#F6762B"], ["#001E00", "#269926", "#39E639"]];
-var current_scheme = 0;
+let current_scheme = 0;
 const schemes = ["Red orange", "Blue night", "Fading white", "Pink cloud", "Blue peach", "Green fade"];
-
 
 window.addEventListener('resize', resize);
 function resize() {
@@ -18,36 +16,46 @@ function resize() {
 }
 
 function createParticle(x){
-    var grad = ctx.createLinearGradient(0, 0, 0, 500);
+    let w;
+    if (black.indexOf(x) !== -1)
+        w = 8;
+    else
+        w = 10;
+    const grad = ctx.createLinearGradient(0, 0, 0, 500);
     grad.addColorStop(0, scheme[current_scheme][0]);
     grad.addColorStop(.50, scheme[current_scheme][1]);
     grad.addColorStop(1, scheme[current_scheme][2]);
 
     ctx.fillStyle = grad;
-    ctx.fillRect(x*10, height*0.5, 10, 10);
-    let p = new Particle(x * 10, height * 0.5, grad);
+    ctx.fillRect(calc_x(x), height*0.5, w, 10);
+    let p = new Particle(calc_x(x), height * 0.5, grad, w);
     particles.push(p);
 }
 function endParticle(x){
+    let w;
+    if (black.indexOf(x) !== -1)
+        w = 8;
+    else
+        w = 10;
     ctx.fillStyle = "#000";
-    ctx.fillRect(x*10, height*0.5, 10, 10);
-    let p = new Particle(x * 10, height * 0.5, "#000");
+    ctx.fillRect(calc_x(x), height*0.5, w, 10);
+    let p = new Particle(calc_x(x), height * 0.5, "#000", w);
     particles.push(p);
 }
 
-function Particle(x, y, color){
+function Particle(x, y, color, w){
     this.update = function(){
         y += vy;
     };
 
     this.draw = function(){
         ctx.fillStyle = color;
-        ctx.fillRect(x, y, 10, 10);
+        ctx.fillRect(x, y, w, 10);
     };
 }
 
 function render(){
-    for (var i = 0; i < particles.length; i++){
+    for (let i = 0; i < particles.length; i++){
         particles[i].update();
         particles[i].draw();
     }
@@ -67,8 +75,8 @@ function process(action, note, status){
 
 function success(midi){
     console.log("Midi device connected! ", midi);
-    var inputs = midi.inputs.values();
-    for(var input = inputs.next();
+    let inputs = midi.inputs.values();
+    for(let input = inputs.next();
         input && !input.done;
         input = inputs.next()) {
         input.value.onmidimessage = onMIDIMessage;

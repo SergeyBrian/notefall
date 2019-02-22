@@ -1,32 +1,31 @@
-var canvas = document.getElementById("canvas"), ctx = canvas.getContext("2d");
-var particles = [];
-var s = 1;
-var width = canvas.width = window.innerWidth/s;
-var height = canvas.height = window.innerHeight/s;
+const canvas = document.getElementById("canvas"), ctx = canvas.getContext("2d");
+const particles = [];
+let width = canvas.width = window.innerWidth;
+let height = canvas.height = window.innerHeight;
 
-var color = "#fff";
-var alpha = "rgba(0, 0, 0, 0.1)";
+let color = "#fff";
+let alpha = "rgba(0, 0, 0, 0.1)";
 
 function createParticle(x){
 	ctx.fillStyle = color;
-	x = x*10;
-	var y = height*0.5;
-	var size = 10;
-	var v = -1.5;
+	x = calc_x(x);
+	let y = height * 0.5;
+	let size = 10;
+	let v = -1.5;
 	ctx.fillRect(x, y, size, size);
-	var p = new Particle(x, y, size, v)
+	let p = new Particle(x, y, size, v);
 	particles.push(p);
 }
 
 function Particle(x, y, size, v){
 	this.update = function(){
 		y += v;
-	}
+	};
 
 	this.draw = function(){
 		ctx.fillStyle = color;
 		ctx.fillRect(x, y, size, size);
-	}
+	};
 }
 
 function render() {
@@ -46,19 +45,18 @@ function resize() {
 }
 
 function process(action, note, status){
-	if (action == 144 && status != 0) {
+	if (action === 144 && status !== 0) {
 		console.log("Pressed " + note);
 		createParticle(note);
-		// render();
 	}
 }
 
 function success(midi){
 	console.log("Midi device connected! ", midi);
-	var inputs = midi.inputs.values();
-	for(var input = inputs.next();
+	const INPUTS = midi.inputs.values();
+	for(let input = INPUTS.next();
 		input && !input.done;
-		input = inputs.next()) {
+		input = INPUTS.next()) {
 		input.value.onmidimessage = onMIDIMessage;
 	}
 }

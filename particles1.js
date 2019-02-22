@@ -1,26 +1,25 @@
-var canvas = document.getElementById("canvas"), ctx = canvas.getContext("2d");
-var particles = [];
-var s = 1;
-var width = canvas.width = window.innerWidth/s;
-var height = canvas.height = window.innerHeight/s;
-var colors = ['#029DAF', '#E5D599', '#FFC219', '#F07C19', '#E32551'];
-var gravity = 0.004;
+const canvas = document.getElementById("canvas"), ctx = canvas.getContext("2d");
+const particles = [];
+let width = canvas.width = window.innerWidth;
+let height = canvas.height = window.innerHeight;
+const colors = ['#029DAF', '#E5D599', '#FFC219', '#F07C19', '#E32551'];
+let gravity = 0.004;
 
 function initParticles(a, x) {
-  for (var i = 0; i < a/5; i++) {
+  for (let i = 0; i < a/5; i++) {
     setTimeout(createParticle, 20, i, x);
   }
 }
 
 function createParticle(i, x) {
-	x = x * 10;
-	var y = height*0.5;
-	var vx = -2+Math.random()*4;
-	var vy = Math.random()*-3;
-	var size = 5+Math.random()*5;
-	var color = colors[i%colors.length];
-	var opacity =  0.5 + Math.random()*0.5;
-	var p = new Particle(x, y, vx, vy, size, color, opacity);
+	x = calc_x(x);
+	let y = height * 0.5;
+	let vx = -2 + Math.random() * 4;
+	let vy = Math.random() * -3;
+	let size = 5 + Math.random() * 5;
+	let color = colors[i % colors.length];
+	let opacity = 0.5 + Math.random() * 0.5;
+	let p = new Particle(x, y, vx, vy, size, color, opacity);
 	particles.push(p);
 }
 

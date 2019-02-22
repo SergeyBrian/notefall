@@ -1,10 +1,9 @@
-var canvas = document.getElementById("canvas"), ctx = canvas.getContext("2d");
-var particles = [];
-var s = 1;
-var width = canvas.width = window.innerWidth/s;
-var height = canvas.height = window.innerHeight/s;
-
-var vy = -1.5;
+const canvas = document.getElementById("canvas"), ctx = canvas.getContext("2d");
+const particles = [];
+const s = 1;
+let width = canvas.width = window.innerWidth / s;
+let height = canvas.height = window.innerHeight / s;
+const vy = -1.5;
 
 window.addEventListener('resize', resize);
 function resize() {
@@ -12,27 +11,37 @@ function resize() {
   height = canvas.height = window.innerHeight;
 }
 
-function createParticle(x){
+function createParticle(x) {
+	let w;
+	if (black.indexOf(x) !== -1)
+		w = 8;
+	else
+		w = 10;
 	ctx.fillStyle = "#fff";
-	ctx.fillRect(x*10, height*0.5, 10, 10);
-	let p = new Particle(x*10, height*0.5, "#fff");
+	ctx.fillRect(calc_x(x), height*0.5, w, 10);
+	let p = new Particle(calc_x(x), height * 0.5, "#fff", w);
 	particles.push(p);
 }
 function endParticle(x){
+	let w;
+	if (black.indexOf(x) !== -1)
+		w = 8;
+	else
+		w = 10;
 	ctx.fillStyle = "#000";
-	ctx.fillRect(x*10, height*0.5, 10, 10);
-	let p = new Particle(x*10, height*0.5, "#000");
+	ctx.fillRect(calc_x(x), height*0.5, w, 10);
+	let p = new Particle(calc_x(x), height * 0.5, "#000", w);
 	particles.push(p);
 }
 
-function Particle(x, y, color){
+function Particle(x, y, color, w){
 	this.update = function(){
 		y += vy;
 	};
 
 	this.draw = function(){
 		ctx.fillStyle = color;
-		ctx.fillRect(x, y, 10, 10);
+		ctx.fillRect(x, y, w, 10);
 	};
 }
 
@@ -57,8 +66,8 @@ function process(action, note, status){
 
 function success(midi){
 	console.log("Midi device connected! ", midi);
-	var inputs = midi.inputs.values();
-	for(var input = inputs.next();
+	const inputs = midi.inputs.values();
+	for(let input = inputs.next();
 		input && !input.done;
 		input = inputs.next()) {
 		input.value.onmidimessage = onMIDIMessage;

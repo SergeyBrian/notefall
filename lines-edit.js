@@ -1,13 +1,13 @@
-var canvas = document.getElementById("canvas"), ctx = canvas.getContext("2d");
-var particles = [];
-var s = 1;
-var width = canvas.width = window.innerWidth/s;
-var height = canvas.height = window.innerHeight/s;
+const canvas = document.getElementById("canvas"), ctx = canvas.getContext("2d");
+const particles = [];
+const s = 1;
+let width = canvas.width = window.innerWidth / s;
+let height = canvas.height = window.innerHeight / s;
 
-var vy = -1.5;
+const vy = -1.5;
 
-var color = "#fff";
-var alpha = "rgba(0, 0, 0, 0.1)";
+let color = "#fff";
+let alpha = "rgba(0, 0, 0, 0.1)";
 
 document.getElementById('color').oninput = function() {
 	color = document.getElementById('color').value;
@@ -21,12 +21,12 @@ document.getElementById('alpha').oninput = function() {
 function createParticle(x){
 	ctx.fillStyle = color;
 	console.log(color);
-	console.log(alpha)
-	x = x*10;
-	var y = height*0.5;
-	var size = 10;
+	console.log(alpha);
+	x = calc_x(x);
+	const y = height * 0.5;
+	const size = 10;
 	ctx.fillRect(x, y, size, size);
-	var p = new Particle(x, y, size, vy)
+	const p = new Particle(x, y, size, vy);
 	particles.push(p);
 }
 
@@ -44,7 +44,7 @@ function Particle(x, y, size, v){
 function render() {
 	ctx.fillStyle = alpha;
 	ctx.fillRect(0, 0, width, height);
-	for (var i = 0; i < particles.length; i++){
+	for (let i = 0; i < particles.length; i++){
 		particles[i].update();
 		particles[i].draw();
 	}
@@ -58,7 +58,7 @@ function resize() {
 }
 
 function process(action, note, status){
-	if (action == 144 && status != 0) {
+	if (action === 144 && status !== 0) {
 		console.log("Pressed " + note);
 		createParticle(note);
 		// render();
@@ -67,8 +67,8 @@ function process(action, note, status){
 
 function success(midi){
 	console.log("Midi device connected! ", midi);
-	var inputs = midi.inputs.values();
-	for(var input = inputs.next();
+	const inputs = midi.inputs.values();
+	for(let input = inputs.next();
 		input && !input.done;
 		input = inputs.next()) {
 		input.value.onmidimessage = onMIDIMessage;
