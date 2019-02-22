@@ -3,7 +3,6 @@ const particles = [];
 const s = 1;
 let width = canvas.width = window.innerWidth / s;
 let height = canvas.height = window.innerHeight / s;
-const black = [22, 25, 27, 30, 32, 34, 37, 39, 42, 44, 46, 49, 51, 54, 56, 58, 61, 63, 66, 68, 70, 73, 75, 78, 80, 82, 85, 87, 90, 92, 94, 97, 99, 102, 104, 106];
 const vy = -1.5;
 
 window.addEventListener('resize', resize);
@@ -15,23 +14,23 @@ function resize() {
 function createParticle(x) {
 	let w;
 	if (black.indexOf(x) !== -1)
-		w = 7;
+		w = 8;
 	else
 		w = 10;
 	ctx.fillStyle = "#fff";
-	ctx.fillRect(x*10, height*0.5, w, 10);
+	ctx.fillRect(calc_x(x), height*0.5, w, 10);
 	let p = new Particle(calc_x(x), height * 0.5, "#fff", w);
 	particles.push(p);
 }
 function endParticle(x){
 	let w;
 	if (black.indexOf(x) !== -1)
-		w = 7;
+		w = 8;
 	else
 		w = 10;
 	ctx.fillStyle = "#000";
-	ctx.fillRect(x*10, height*0.5, w, 10);
-	let p = new Particle(x * 10, height * 0.5, "#000", w);
+	ctx.fillRect(calc_x(x), height*0.5, w, 10);
+	let p = new Particle(calc_x(x), height * 0.5, "#000", w);
 	particles.push(p);
 }
 

@@ -2,8 +2,6 @@ const canvas = document.getElementById("canvas"), ctx = canvas.getContext("2d");
 const particles = [];
 let width = canvas.width = window.innerWidth;
 let height = canvas.height = window.innerHeight;
-const black = [22, 25, 27, 30, 32, 34, 37, 39, 42, 44, 46, 49, 51, 54, 56, 58, 61, 63, 66, 68, 70, 73, 75, 78, 80, 82, 85, 87, 90, 92, 94, 97, 99, 102, 104, 106];
-
 const vy = -1.5;
 
 
@@ -16,7 +14,7 @@ function resize() {
 function createParticle(x){
 	let w;
 	if (black.indexOf(x) !== -1)
-		w = 7;
+		w = 8;
 	else
 		w = 10;
 	const grad = ctx.createLinearGradient(0, 0, 1000, 0);
@@ -32,12 +30,12 @@ function createParticle(x){
 function endParticle(x){
 	let w;
 	if (black.indexOf(x) !== -1)
-		w = 7;
+		w = 8;
 	else
 		w = 10;
 	ctx.fillStyle = "#fff";
-	ctx.fillRect(x*10, height*0.5, w, 10);
-	p = new Particle(x * 10, height * 0.5, "#fff", w);
+	ctx.fillRect(calc_x(x), height*0.5, w, 10);
+	p = new Particle(calc_x(x), height * 0.5, "#fff", w);
 	particles.push(p);
 }
 
@@ -62,10 +60,10 @@ function render(){
 }
 
 function process(action, note, status){
-	if (action == 144 && status != 0) {
+	if (action === 144 && status !== 0) {
 		console.log("Pressed " + note);
 		createParticle(note);
-	} else if (action == 144 && status == 0) {
+	} else if (action === 144 && status === 0) {
 		console.log("Released " + note);
 		endParticle(note);
 	}
