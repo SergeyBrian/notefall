@@ -5,6 +5,8 @@ let height = canvas.height = window.innerHeight;
 const colors = ['#029DAF', '#E5D599', '#FFC219', '#F07C19', '#E32551'];
 let gravity = 0.004;
 
+vs
+
 function initParticles(a, x) {
   for (let i = 0; i < a/5; i++) {
     setTimeout(createParticle, 20, i, x);

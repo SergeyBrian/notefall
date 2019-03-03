@@ -3,6 +3,8 @@ const particles = [];
 let width = canvas.width = window.innerWidth;
 let height = canvas.height = window.innerHeight;
 
+sy = height;
+
 let vy = -1.5;
 
 const scheme = [["white", "yellow", "red"], ["#65AFFC", "#418BFF", "#4701A6"], ["black", "grey", "white"], ["#4E5CEF", "#AB50A8", "#EA4878"], ["#4024D7", "#6D9D78", "#F6762B"], ["#001E00", "#269926", "#39E639"], ["#351889", "#9C65CA", "#EA9CE5"], ["#194145", "#E8A145", "#ADC584"], ["#44214D", "#742359", "#DD0610"]];
@@ -27,8 +29,8 @@ function createParticle(x){
     grad.addColorStop(1, scheme[current_scheme][2]);
 
     ctx.fillStyle = grad;
-    ctx.fillRect(calc_x(x), height*0.5, w, 10);
-    let p = new Particle(calc_x(x), height * 0.5, grad, w);
+    ctx.fillRect(calc_x(x), sy, w, 10);
+    let p = new Particle(calc_x(x), sy, grad, w);
     particles.push(p);
 }
 function endParticle(x){
@@ -37,8 +39,8 @@ function endParticle(x){
         w = 8;
     else
         w = 10;
-    ctx.fillRect(calc_x(x), height*0.5, w, 10);
-    let p = new Particle(calc_x(x), height * 0.5, "#000", w);
+    ctx.fillRect(calc_x(x), sy, w, 10);
+    let p = new Particle(calc_x(x), sy, "#000", w);
     particles.push(p);
 }
 
