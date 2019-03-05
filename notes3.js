@@ -67,6 +67,7 @@ function render(){
 function process(action, note, status){
     if (action === 144 && status !== 0) {
         console.log("Pressed " + note);
+        play(note);
         createParticle(note);
     } else if (action === 144 && status === 0) {
         console.log("Released " + note);
