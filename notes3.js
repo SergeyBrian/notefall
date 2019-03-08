@@ -5,7 +5,7 @@ let height = canvas.height = window.innerHeight;
 
 let vy = -1.5;
 
-const scheme = [["white", "yellow", "red"], ["#65AFFC", "#418BFF", "#4701A6"], ["black", "grey", "white"], ["#4E5CEF", "#AB50A8", "#EA4878"], ["#4024D7", "#6D9D78", "#F6762B"], ["#001E00", "#269926", "#39E639"], ["#351889", "#9C65CA", "#EA9CE5"], ["#194145", "#E8A145", "#ADC584"], ["#44214D", "#742359", "#DD0610"]];
+const scheme = [["white", "yellow", "red"], ["#65AFFC", "#418BFF", "#4701A6"], ["black", "grey", "white"], ["#4E5CEF", "#AB50A8", "#EA4878"], ["#4024D7", "#F32469", "#F6762B"], ["#001E00", "#269926", "#39E639"], ["#351889", "#9C65CA", "#EA9CE5"], ["#194145", "#E8A145", "#ADC584"], ["#44214D", "#742359", "#DD0610"]];
 let current_scheme = 0;
 const schemes = ["Red orange", "Blue night", "Fading white", "Pink cloud", "Blue peach", "Green fade", "Violet", "Morning sky", "Red"];
 
