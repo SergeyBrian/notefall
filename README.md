@@ -32,11 +32,9 @@ Scroll down to change settings or to go back to the main menu:
 1. [Particles (Light)](https://sergeybrian.github.io/notefall/particles1.html). Parameters: **none**
 2. [Particles (Dark)](https://sergeybrian.github.io/notefall/particles2.html). Parameters: **none**
 3. [Particles (Gradient)](https://sergeybrian.github.io/notefall/particles3.html). Parameters: **none**
-4. [Lines (Dark)](https://sergeybrian.github.io/notefall/lines.html). Parameters: **none**
-5. [Lines (Editable)](https://sergeybrian.github.io/notefall/lines-edit.html). Parameters: **Tempo, color, fade speed**
-6. [Notes (Dark)](https://sergeybrian.github.io/notefall/notes.html). Parameters: **Tempo**
-7. [Notes (Light + Gradient)](https://sergeybrian.github.io/notefall/notes2.html). Parameters: **Tempo**
-8. [Notes (The best mode)](https://sergeybrian.github.io/notefall/notes3.html). Parameters: **Tempo, Color scheme**
+4. [Notes (Dark)](https://sergeybrian.github.io/notefall/notes.html). Parameters: **Tempo**
+5. [Notes (Light + Gradient)](https://sergeybrian.github.io/notefall/notes2.html). Parameters: **Tempo**
+6. [Notes (The best mode)](https://sergeybrian.github.io/notefall/notes3.html). Parameters: **Tempo, Color scheme**
 
 ## 3. Supported browsers
 
