@@ -45,4 +45,3 @@ Scroll down to change settings or to go back to the main menu:
 
 1. [Notefall](https://sergeybrian.github.io/notefall/)
 2. [GitHub repository](https://github.com/SergeyBrian/notefall)
-3. [More by Sergio Brianski](https://it-serge.000webhostapp.com/)
